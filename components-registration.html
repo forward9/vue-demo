@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="UTF-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<button-counter title="全局组件测试..."></button-counter>
+			<hr />
+			<inner-button-counter title="局部组件测试"></inner-button-counter>
+			<hr />
+			<test></test>
+		</div>
+		<script type="text/javascript">
+			// 全局注册
+			Vue.component('button-counter', {
+				props:["title"],
+				data: function() {
+					return {
+						count: 0
+					}
+				},
+				template: '<button v-on:click="count++">{{title}} You clicked me {{ count }} times.</button>'
+			});
+			
+			var vm = new Vue({
+				el: "#app",
+				data: {},
+				methods: {
+					
+				},
+				components:{
+					'inner-button-counter': {
+						props:["title"],
+						data: function() {
+							return {
+								count: 0
+							}
+						},
+						template: '<button v-on:click="count++">{{title}} You clicked me {{ count }} times.</button>'
+					},
+					test: {
+						template: '<h1>局部................</h1>'
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

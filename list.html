@@ -9,13 +9,13 @@
 		<div id="app">
 			<ul>
 			  <li v-for="item in items" >
-			    {{ item.message }}
+			    {{ item.message }}   {{ item.message1 }}
 			  </li>
 			</ul>
 			
 			<ul style="color:#FF0000;">
 			  <li v-for="(item,index) in items" :key="index">
-			    {{index}} {{ item.message }}
+			    {{index}} {{ item.message }}  {{ item.message1 }}
 			  </li>
 			</ul>
 			<hr />
@@ -41,8 +41,8 @@
 				el:"#app",
 				data:{
 					items:[
-						{message:"Foo"},
-						{message:"Bar"}
+						{message:"Foo", message1:"Foo..."},
+						{message:"Bar", message1:"Bar..."}
 					],
 					object:{
 					      title: 'How to do lists in Vue',
@@ -53,7 +53,7 @@
 			});
 		vm.$data.items.pop();
 		vm.$data.items.push({message:"Bar1"})
-		vm.$data.items.push({message:"Foo2"})
+		vm.$data.items.push({message:"Foo2", message1:"Foo2..."})
 		
 		Vue.set(vm.$data.object,"a2","a2vvv");
 		

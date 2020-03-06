@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="UTF-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<a  v-on:click.once="doThis" v-on:click.capture="doThis2">点击事件将只会触发一次</a>
+			<hr />
+			
+			<button v-on:click="counter += 1">Add 1</button>
+			<p>The button above has been clicked {{ counter }} times.</p>
+			<hr />
+
+			<button v-on:click="count += 1">点击次数:{{count}}</button>
+			<hr />
+
+			<!-- `greet` 是在下面定义的方法名 -->
+			<button v-on:click="greet1">Greet1</button>
+			<button v-on:click="greet2('vue', $event)">Greet2</button>
+			<hr />
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					counter: 0,
+					count: 0,
+					name: ".js"
+				},
+				methods: {
+					doThis: function(){
+						alert("点击事件将只会触发一次");
+					},
+					doThis2: function(){
+						alert("click.capture........");
+					},
+					greet1: function(event) {
+						// `this` 在方法里指向当前 Vue 实例
+						alert("Hello " + this.name);
+						// `event` 是原生 DOM 事件
+						if (event) {
+							alert(event.target.tagName)
+						}
+					},
+					greet2: function(str, event) {
+						alert("Hello " + str + this.$data.name);
+						console.log(event);
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

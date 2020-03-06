@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="UTF-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<input v-model="message" placeholder="edit me">
+			<p>Message is: {{ message }}</p>
+			<hr />
+
+			<span>Multiline message is:</span>
+			<p style="white-space: pre-line;">{{ message2 }}</p>
+			<br>
+			<textarea v-model="message2" placeholder="add multiple lines"></textarea>
+			<hr />
+
+			单个复选框，绑定到布尔值：
+			<input type="checkbox" id="checkbox" v-model="checked">
+			<label for="checkbox">{{ checked }}</label>
+
+			<hr />
+			多个复选框，绑定到同一个数组：
+			<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+			<label for="jack">Jack</label>
+			<input type="checkbox" id="john" value="John" v-model="checkedNames">
+			<label for="john">John</label>
+			<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+			<label for="mike">Mike</label>
+			<br>
+			<span>Checked names: {{ checkedNames }}</span>
+			<hr />
+
+			<input type="radio" id="one" value="One" v-model="picked">
+			<label for="one">One</label>
+			<br>
+			<input type="radio" id="two" value="Two" v-model="picked">
+			<label for="two">Two</label>
+			<br>
+			<span>Picked: {{ picked }}</span>
+			<hr />
+
+			<select v-model="selected">
+				<option value="">请选择</option>
+				<option>A</option>
+				<option>B</option>
+				<option>C</option>
+			</select>
+			<span>Selected: {{ selected }}</span>
+			<hr />
+
+			<select v-model="selected2" multiple style="width: 50px;">
+				<option>A</option>
+				<option>B</option>
+				<option>C</option>
+			</select>
+			<br>
+			<span>Selected: {{ selected2 }}</span>
+			<hr />
+			
+			<button type="button" @click="submit">提交</button>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					message: '',
+					message2: '',
+					checked: true,
+					checkedNames: ['Jack'],
+					picked: '',
+					selected: '',
+					selected2: []
+				},
+				methods:{
+					submit:function () {
+						alert(this.checkedNames);
+						var postObj = {
+							checkedNames:this.checkedNames,
+							msg2:this.message2
+						};
+						console.log(postObj)
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
