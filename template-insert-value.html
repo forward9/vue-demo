@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="UTF-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			{{msg}} <br />
+			<span v-once> div1 v-once这个不会改变: {{msg2}}</span>
+			<hr />
+			<p>Using mustaches: {{ rawHtml }}</p>
+			<p>Using v-html directive: <span v-html="rawHtml"></span></p>
+			<hr />
+			<div v-bind:class="color">HTML attribute test</div>
+			<hr />
+			<span>{{ number + 1 }}</span>
+			<span>{{ ok ? 'YES' : 'NO' }}</span>
+			<span>{{ 1 == 2 ? 'YES' : 'NO' }}</span>
+			<span>{{ message.split('').reverse().join('') }}</span>
+			<div v-bind:id="'list-' + id"></div>
+		</div>
+
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					msg: ' hi vue.js',
+					msg2: ' HI VUE.JS',
+					rawHtml: '<span style="color:red">hi vue.js</span>',
+					color: 'blue',
+					number:10,
+					ok: true,
+					message:"VUE",
+					id:2
+				}
+			});
+			vm.$data.msg = "hi vue.js...";
+			vm.$data.msg2 = "HI VUE.JS...";
+		</script>
+		
+		<style type="text/css">
+			.red{color:red}
+			.blue{color:blue; font-size: 30px;}
+		</style>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="UTF-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p v-if="seen">现在你看到我了</p>
+			
+			<a v-bind:href="url">动态绑定...</a> <br />
+			<a :href="url">动态绑定...</a><br />
+			<hr />
+			
+			<span> {{buttonMsg}}</span><br />
+			<span> <input type="button" value="test" v-on:click="doButton"/> </span>
+			<br />
+			<span> <input type="button" value="test" @click="doButton"/> </span>
+		</div>
+
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					seen: true,
+					url:"http://www.baidu.com",
+					buttonMsg:"按钮消息",
+					count:0
+				},
+				methods:{
+					doButton:function(){
+						this.$data.count+=1;
+						this.$data.buttonMsg="单击第"+this.$data.count+"次";
+					}
+				}
+			});
+			vm.$data.msg = "hi vue.js...";
+			vm.$data.msg2 = "HI VUE.JS...";
+		</script>
+		
+		<style type="text/css">
+			.red{color:red}
+			.blue{color:blue; font-size: 30px;}
+		</style>
+	</body>
+</html>

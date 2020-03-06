@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="UTF-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+			  <li v-for="item in items" >
+			    {{ item.message }}
+			  </li>
+			</ul>
+			
+			<ul style="color:#FF0000;">
+			  <li v-for="(item,index) in items" :key="index">
+			    {{index}} {{ item.message }}
+			  </li>
+			</ul>
+			<hr />
+			
+			<ul >
+			  <li v-for="value in object">
+			    {{ value }}
+			  </li>
+			</ul>
+			
+			<div v-for="(value, key) in object" :key="key">
+			  {{ key }} : {{ value }}
+			</div>
+			<hr />
+			
+			<div style="color:blue;" v-for="(value, key, index) in object">
+			  {{ index }} {{ key }} : {{ value }}
+			</div>
+			
+		</div>
+		<script type="text/javascript">
+		var vm = new Vue({
+				el:"#app",
+				data:{
+					items:[
+						{message:"Foo"},
+						{message:"Bar"}
+					],
+					object:{
+					      title: 'How to do lists in Vue',
+					      author: 'Jane Doe',
+					      publishedAt: '2016-04-10'
+					}
+				}
+			});
+		vm.$data.items.pop();
+		vm.$data.items.push({message:"Bar1"})
+		vm.$data.items.push({message:"Foo2"})
+		
+		Vue.set(vm.$data.object,"a2","a2vvv");
+		
+		// vm.$delete(vm.$data.object, "author");
+		Vue.delete(vm.$data.object, "author");
+		
+		Vue.set(vm.$data.object,"a1","a1vvv");
+		Vue.set(vm.$data.object,"a11","a11vvv");
+		
+		</script>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="UTF-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			{{msg}} 
+		</div>
+		<script type="text/javascript">
+		var data1 = {msg:'a'}
+		// Object.freeze(data1);
+		var vm = new Vue({
+				el:"#app",
+				data:data1
+			});
+		vm.$watch('msg', function(newVal,oldVal){
+			console.log(newVal, oldVal)
+		});
+		data1.msg = "b"; 
+		vm.$watch('msg', function(newVal,oldVal){
+			console.log(newVal, oldVal)
+		});
+		vm.msg="c";
+		vm.$watch('msg', function(newVal,oldVal){
+			console.log(newVal, oldVal)
+		});
+		vm.$data.msg="d";
+		
+		</script>
+	</body>
+</html>
