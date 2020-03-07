@@ -38,8 +38,8 @@
 				methods: {
 					counter: function() {
 						this.count++
-						this.$emit('clicknow1', this.count);
-						this.$emit('click', "click:"+this.count);
+						this.$emit('clicknow1', "clicknow1: "+this.count);
+						this.$emit('click', "    click: "+this.count);
 					}
 				}
 			});
